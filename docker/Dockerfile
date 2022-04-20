@@ -11,12 +11,12 @@ COPY . .
 RUN make install
 
 FROM base-image AS production-image
-COPY crackme_bin/111.zip /usr/local/bin/111.zip
-RUN chmod 751 /usr/local/bin/111.zip
+COPY crackme_bin/license_checker_3 /usr/local/bin/license_checker_3
+RUN chmod 751 /usr/local/bin/license_checker_3
 WORKDIR /home/crackme/
 # RUN python3 -m site # if this ever breaks to get dist-packages folder.
 COPY --from=compile-image /usr/local/lib/python3.9/dist-packages/ /usr/local/lib/python3.9/dist-packages/
 COPY --from=compile-image /usr/local/bin/crackme_licesnse_checker_3 /usr/local/bin/
 
 USER crackme
-CMD 111.zip
+CMD license_checker_3
